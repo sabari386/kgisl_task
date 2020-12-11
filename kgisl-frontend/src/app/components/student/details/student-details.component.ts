@@ -1,0 +1,42 @@
+/**
+ * Created By : Sangwin Gawande (http://sangw.in)
+ */
+import { Component, OnInit } from '@angular/core';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
+// Services
+import { StudentService } from '../../../services/student/student.service';
+import { routerTransition } from '../../../services/config/config.service';
+
+@Component({
+	selector: 'app-student-details',
+	templateUrl: './student-details.component.html',
+	styleUrls: ['./student-details.component.css'],
+	animations: [routerTransition()],
+	host: { '[@routerTransition]': '' }
+})
+
+export class StudentDetailsComponent implements OnInit {
+	index: any;
+	studentDetail: any;
+	constructor(private router: Router, private route: ActivatedRoute, private studentService: StudentService, private toastr: ToastrService) {
+		// Get user detail index number sent in params
+		this.route.params.subscribe(params => {
+			this.index = params['id'];
+			if (this.index && this.index != null && this.index !== undefined) {
+				
+			}
+		});
+	}
+
+	ngOnInit() {
+	}
+
+	
+}
+
+/**
+ * Created By : Sangwin Gawande (http://sangw.in)
+ */

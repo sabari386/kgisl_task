@@ -1,0 +1,21 @@
+<div class="w3-container">
+	<form class="w3-container">
+		<div class="w3-panel w3-round-small w3-teal">
+			<h3><span *ngIf="index === undefined">Appointments</span><span *ngIf="index != undefined">Student
+					Update</span> <a routerLink="/" class="w3-button w3-green custom-button"><i
+						class="w3-medium fa fa-chevron-left"></i> Back</a></h3>
+		</div>
+		
+		<mat-form-field>
+			<input matInput [matDatepicker]="picker" placeholder="Choose a date">
+			<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+			<mat-datepicker #picker></mat-datepicker>
+		</mat-form-field>
+		
+
+		<mat-chip-list aria-label="Fish selection">
+			<mat-chip *ngFor="let appointmentList of appointmentListData" (click)="openDialog()">{{appointmentList}}</mat-chip>
+		</mat-chip-list>	
+
+	</form>
+</div>
