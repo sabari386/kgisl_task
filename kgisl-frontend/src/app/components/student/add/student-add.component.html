@@ -6,15 +6,15 @@
 						class="w3-medium fa fa-chevron-left"></i> Back</a></h3>
 		</div>
 		
-		<mat-form-field>
-			<input matInput [matDatepicker]="picker" placeholder="Choose a date">
-			<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-			<mat-datepicker #picker></mat-datepicker>
-		</mat-form-field>
-		
+		<div>
+			<label>Date</label>
+		</div>
+		<div style="padding-bottom: 25px;">
+			<input type="date" placeholder="available date"  [(ngModel)]="value" [ngModelOptions]="{standalone: true}" [(ngModel)]="value" (change)="getAvailableSlotsByDate(value)">        
+		</div>
 
 		<mat-chip-list aria-label="Fish selection">
-			<mat-chip *ngFor="let appointmentList of appointmentListData" (click)="openDialog()">{{appointmentList}}</mat-chip>
+			<mat-chip *ngFor="let appointmentList of appointmentListData">{{appointmentList}}</mat-chip>
 		</mat-chip-list>	
 
 	</form>

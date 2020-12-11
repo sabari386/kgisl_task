@@ -1,0 +1,133 @@
+<div>
+    <form [formGroup]="addUserGroup" (ngSubmit)="onSubmit()" autocomplete="off">
+
+        <div class="form-row">
+            <div style="padding-top: 10px;">
+                <label data-toggle="tooltip" title="Must Needed" data-placement="right"
+                    class="text-dashed-underline">Full Name</label>
+            </div>
+            <div>
+                <input type="text" appNumberandalphabet formControlName="fullName" placeholder="Full Name"
+                    class="form-control">
+                <p *ngIf="(fug.fullName.touched || submitted) && fug.fullName.errors?.required">
+                    Full name is required
+                </p>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div>
+                <label data-toggle="tooltip" title="Must Needed" data-placement="right"
+                    class="text-dashed-underline">Age</label>
+            </div>
+            <div>
+                <input type="text" appNumberandalphabet formControlName="age" placeholder="Age" class="form-control">
+                <p  *ngIf="(fug.age.touched || submitted) && fug.age.errors?.required">
+                    age is required
+                </p>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div>
+                <label data-toggle="tooltip" title="Must Needed" data-placement="right"
+                    class="text-dashed-underline">Mobile No</label>
+            </div>
+            <div>
+                <input type="text" appNumberandalphabet formControlName="mobileNo" placeholder="MobileNo"
+                    class="form-control">
+                <p  *ngIf="(fug.mobileNo.touched || submitted) && fug.mobileNo.errors?.required">
+                    mobile no is required
+                </p>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-3 ">
+                <label>Email</label>
+            </div>
+            <div>
+                <input type="text" formControlName="email" placeholder="Email Id" class="form-control">
+                <p  *ngIf="(fug.email.touched || submitted) && fug.email.errors?.required">
+                    Email is required
+                </p>
+                <p *ngIf="fug.email.touched && fug.email.errors?.email">
+                    Enter a valid email address
+                </p>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div>
+                <label>Gender</label>
+            </div>
+            <div>
+                <select formControlName="gender" placeholder="Gender" name="gender" class="form-control country"
+                    id="gender">
+
+                    <option value="">Choose Gender Type</option>
+                    <option title="Male" data-country="Male" value="Male">Male</option>
+                    <option title="Female" data-country="Female" value="Female">Female</option>
+                </select>
+                <p *ngIf="(fug.gender.touched || submitted) && fug.gender.errors?.required">
+                    Gender is required
+                </p>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div>
+                <label data-toggle="tooltip" title="Must Needed" data-placement="right"
+                    class="text-dashed-underline">Date</label>
+            </div>
+            <div>
+                <input type="date" appNumberandalphabet formControlName="appointment_date"
+                    placeholder="Appointment Date" [(ngModel)]="value" (change)="getAvailableSlotsByDate(value)" class="form-control">
+                <p *ngIf="(fug.appointment_date.touched || submitted) && fug.appointment_date.errors?.required">
+                    Date is required
+                </p>
+            </div>
+        </div>
+
+       
+
+        <div class="form-row">
+            <div class="form-group col-3">
+                <label>Status</label>
+            </div>
+            <div>
+                <select formControlName="appointment_status" placeholder="Status" name="status"
+                    class="form-control country" id="status">
+                    <option value="">Choose Status</option>
+                    <option title="Booked" data-country="Booked" value="Booked">Booked</option>
+                    <option title="Waiting" data-country="Waiting" value="Waiting">Waiting</option>
+                </select>
+                <p 
+                    *ngIf="(fug.appointment_status.touched || submitted) && fug.appointment_status.errors?.required">
+                    Status is required
+                </p>
+            </div>
+        </div>     
+
+        <div class="form-row">
+            <div>
+                <label>Time</label>
+            </div>
+            <div>
+                <select formControlName="appointment_time" placeholder="00:00" name="time" id="time">
+                    <option value="">Choose Time</option>
+                    <option *ngFor="let availableSlot of availableSlots;" data-country="availableSlot">{{availableSlot}}</option>
+                </select>
+                <p 
+                    *ngIf="(fug.appointment_time.touched || submitted) && fug.appointment_time.errors?.required">
+                    Time is required
+                </p>
+            </div>
+        </div>        
+
+
+        <div style="padding-top: 10px;">
+            <button style="width: 15%;" [disabled]="!userForm.controls.addUserGroup.valid" class="btn back-btn" type="submit">Add</button>
+        </div>
+    </form>
+</div>

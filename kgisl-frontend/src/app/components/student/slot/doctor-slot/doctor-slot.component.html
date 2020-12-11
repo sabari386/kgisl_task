@@ -1,7 +1,48 @@
-<mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-</mat-form-field>
+<form [formGroup]="addUserGroup" (ngSubmit)="onSubmit()" autocomplete="off">
 
-<igx-time-picker></igx-time-picker>
+    <div class="form-row">
+        <div class="form-group col-3" style="padding-top: 10px;">
+            <label data-toggle="tooltip" data-placement="right"
+                class="text-dashed-underline">date</label>
+        </div>
+        <div class="form-group col-8">
+            <input type="date" placeholder="search date" formControlName="date" class="form-control" min="1997-01-01" max="2030-12-31">
+            <p class="text-danger" *ngIf="(fug.date.touched) && fug.date.errors?.required">
+                Date is required
+            </p>
+        </div>
+    </div> 
+
+
+    <div class="form-row">
+        <div class="form-group col-3" style="padding-top: 10px;">
+            <label data-toggle="tooltip" title="Must Needed" data-placement="right"
+                class="text-dashed-underline">Start Time</label>
+        </div>
+        <div class="form-group col-8">
+            <input type="time" placeholder="00:00:00" formControlName="startTime" class="form-control">
+            <p class="text-danger" *ngIf="(fug.startTime.touched) && fug.startTime.errors?.required">
+                Start time is required
+            </p>
+        </div>
+    </div> 
+            
+    <div class="form-row">
+        <div class="form-group col-3" style="padding-top: 10px;">
+            <label data-toggle="tooltip" title="Must Needed" data-placement="right"
+                class="text-dashed-underline">End Time</label>
+        </div>
+        <div class="form-group col-8">
+            <input type="time" placeholder="00:00:00" formControlName="endTime" class="form-control">
+            <p class="text-danger" *ngIf="(fug.endTime.touched) && fug.endTime.errors?.required">
+                End time is required
+            </p>
+        </div>
+    </div> 
+
+    
+
+    <div class="text-right buttons" style="padding-top: 10px;">
+        <button [disabled]="!userForm.controls.addUserGroup.valid" class="btn back-btn" type="submit">Add</button>
+    </div>
+</form>

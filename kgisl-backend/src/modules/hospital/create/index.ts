@@ -33,18 +33,28 @@ class AddPatient implements IAddPatient {
             }
             const appointmentRecord = await this.appointmentModal.create(appointmentDetails);
             if (appointmentRecord) {
-                const slotRecords = await this.availableSlotModal.find({ "available_date": appointmentRecord.appointment_date }, { available_slots: 1 });                
-                const id = slotRecords[0].available_slots.indexOf(appointmentRecord.appointment_time);
-                slotRecords[0].available_slots.splice(id, 1);
-                const updateSlots = await this.availableSlotModal.findOneAndUpdate({ _id: slotRecords[0]._id },
-                    { $set: { available_slots: slotRecords[0].available_slots } }, { new: true })
-                if (updateSlots) {
-                    return {
-                        status: true,
-                        Msg: "appointment added Successfully",
-                        data: updateSlots
+                const slotRecords = await this.availableSlotModal.find({ "available_date": appointmentRecord.appointment_date }, { available_slots: 1 });
+                if(slotRecords) {
+                    const appointDate = appointmentRecord.appointment_time;
+                    var availSlots = slotRecords[0].available_slots.filter(function(number) {
+                        return number != appointDate;
+                      });
+                    const updateSlots = await this.availableSlotModal.findOneAndUpdate({ _id: slotRecords[0]._id },
+                        { $set: { available_slots: availSlots } }, { new: true })
+                    if (updateSlots) {
+                        return {
+                            status: true,
+                            Msg: "appointment added Successfully",
+                            data: updateSlots
+                        }
                     }
-                }
+                }else{
+                    return {
+                        status: false,
+                        Msg: "slot not booked",
+                    }
+                }        
+                
             }
         } else {
             return {

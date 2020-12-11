@@ -11,6 +11,7 @@
  import { StudentDetailsComponent } from '../student/details/student-details.component';
  import { StudentAddComponent } from '../student/add/student-add.component';
  import { DoctorSlotComponent } from '../student/slot/doctor-slot/doctor-slot.component';
+ import { PatientComponent } from '../student/patient/patient.component';
 
  // Services
  import { routerTransition } from '../../services/config/config.service';
@@ -60,6 +61,10 @@
  	path: 'add',
  	component: StudentAddComponent
  },
+ {
+	path: 'add-patient',
+	component: PatientComponent
+},
  {
 	path: 'doc-slot',
 	component: DoctorSlotComponent

@@ -16,29 +16,30 @@ export class StudentService {
 				'Accept': 'application/json'
     })
   }
+  
 
-  getAppointmentsByDate(searchDate): Observable<any> {
-    return this.http.get(`http://localhost:9000/hospital/getAppointmentByDate/${searchDate}`);    
-  } 
+  addAvailableSlots(slotDetails): Observable<any> {
+    return this.http.post('http://localhost:9000/hospital/addAvailableSlots',slotDetails);    
+  }
 
   getAvailableSlots(): Observable<any> {
     return this.http.get('http://localhost:9000/hospital/getAvailableSlots');    
   }
 
-  // Error handling
-  errorHandl(error) {
-    let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
-    } else {
-      // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    console.log(errorMessage);
-    return throwError(errorMessage);
- }
+  getAvailableSlotsByDate(dateVal): Observable<any> {
+    return this.http.get(`http://localhost:9000/hospital/getAvailableSlotsByDate/${dateVal}`);    
+  }
 
+  addPatientDetails(patientDetails): Observable<any> {
+    return this.http.post('http://localhost:9000/hospital/addPatientDetails',patientDetails);    
+  }
 
+  getAppointmentByDate(dateVal): Observable<any> {
+    return this.http.get(`http://localhost:9000/hospital/getAppointmentByDate/${dateVal}`);    
+  }
+  
+  getAppointmentsByDate(searchDate): Observable<any> {
+    return this.http.get(`http://localhost:9000/hospital/getAppointmentByDate/${searchDate}`);    
+  }
 
 }

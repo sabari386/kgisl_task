@@ -17,13 +17,13 @@ import { IgxTimePickerModule } from "igniteui-angular";
 export class StudentListComponent implements OnInit {
 	studentList: any;
 	patientListData: any;
+	value: any;
 
 	constructor(private studentService: StudentService, private toastr: ToastrService) {
 
 	}
 	ngOnInit() {
-		//var currentDate = date.format(new Date(), 'DD-MM-YYYY');
-		var currentDate = '02-12-2020'
+		var currentDate = date.format(new Date(), 'YYYY-MM-DD');
 		this.getAppointmentList(currentDate);
 	}
 
@@ -33,6 +33,16 @@ export class StudentListComponent implements OnInit {
 				this.patientListData = resp.data
 			);
 	}
+
+	getAppointmentByDate(dateVal) {
+		this.patientListData = [];
+		this.studentService.getAppointmentByDate(dateVal)
+			.subscribe((resp) => {
+				if (resp.data.length) {
+					this.patientListData = resp.data
+				}
+			})
+	};
 
 
 

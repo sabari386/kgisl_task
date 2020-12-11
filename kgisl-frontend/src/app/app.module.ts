@@ -2,15 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { enableProdMode } from '@angular/core';
 
+
 // Modules
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { MatDatepickerModule, MatInputModule, MatNativeDateModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material/chips';
-import { IgxTimePickerModule } from "igniteui-angular";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 // Services
 import { AuthService } from './services/auth/auth.service';
 import { UserService } from './services/user/user.service';
@@ -30,6 +31,7 @@ import { HomeComponent, homeChildRoutes } from './components/home/home.component
 import { HighlightStudentDirective } from './directives/highlight-student.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { DoctorSlotComponent } from './components/student/slot/doctor-slot/doctor-slot.component';
+import { PatientComponent } from './components/student/patient/patient.component';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import { DoctorSlotComponent } from './components/student/slot/doctor-slot/docto
 		FilterPipe,
 		PhonePipe,
 		HighlightStudentDirective,
-		DoctorSlotComponent
+		DoctorSlotComponent,
+		PatientComponent
 	],
 	imports: [
 		BrowserModule,
@@ -62,7 +65,7 @@ import { DoctorSlotComponent } from './components/student/slot/doctor-slot/docto
 		MatDatepickerModule,
 		MatNativeDateModule,
 		MatChipsModule,
-		IgxTimePickerModule
+		BrowserModule, BrowserAnimationsModule ,NgxMaterialTimepickerModule
 	],
 	providers: [AuthService, UserService, StudentService],
 	bootstrap: [AppComponent]

@@ -2,36 +2,30 @@
 
 <div class="w3-container" *ngIf="patientListData">
 	<div class="w3-panel w3-round-small w3-teal">
-		<h3>Patient List <button routerLink="/add" class="w3-button w3-green custom-button"><i class="w3-medium  fa fa-plus"></i> Add New Patient</button></h3>
+		<h3>Patient List <button routerLink="/add-patient" class="w3-button w3-green custom-button"><i class="w3-medium  fa fa-plus"></i> Add New Patient</button></h3>
 	</div>
-	<span><i class="w3-medium fa fa-search"></i> Search : <input class="" type="text" ></span>
+	<span><div style="padding-bottom: 25px;">
+		<input type="date" placeholder="DD-MM-YYYY"  [(ngModel)]="value" [ngModelOptions]="{standalone: true}" [(ngModel)]="value" (change)="getAppointmentByDate(value)">        
+	</div></span>
 
-	<div class="w3-panel w3-green" *ngIf="(patientListData).length === 0">
-		<h3>Oh no</h3>
-		<p>No patient found <span> </span> </p>
-	</div>
 	<div class="w3-panel w3-light-grey w3-padding-16 w3-card-2" *ngIf="(patientListData).length != 0">
 		<table class="w3-table w3-striped w3-bordered">
 			<tr>
 				<th><i class="w3-medium custom-icon fa fa-refresh"></i> ID</th>
-				<th><i class="w3-medium custom-icon fa fa-user"></i> Full Name</th>
-				<th><i class="w3-medium custom-icon fa fa-envelope-o"></i> Email</th>
-				<th><i class="w3-medium custom-icon fa fa-phone"></i> Phone</th>
-				<th><i class="w3-medium custom-icon fa fa-pencil"></i> Gender</th>
+				<th><i class="w3-medium custom-icon fa fa-user"></i>Full Name</th>
+				<th><i class="w3-medium custom-icon fa fa-envelope-o"></i>Email</th>
+				<th><i class="w3-medium custom-icon fa fa-phone"></i>Phone</th>
+				<th><i class="w3-medium custom-icon fa fa-pencil"></i>Gender</th>
 				<th><i class="w3-medium custom-icon fa fa-trash"></i> Status</th>
 			</tr>
 			<tr *ngFor="let patientList of patientListData; index as i;" appHighlightStudent>
 				<td>{{i +1}}</td>
 				<td class="pointer" [routerLink]="['detail', i]">{{patientList.fullName}} </td>
 				<td class="pointer" [routerLink]="['detail', i]">{{patientList.email}}</td>
-				<td class="pointer" [routerLink]="['detail', i]">{{patientList.phone | phone}}</td>
+				<td class="pointer" [routerLink]="['detail', i]">{{patientList.mobileNo | phone}}</td>
 				<td class="pointer" [routerLink]="['detail', i]">{{patientList.gender}} </td>
 				<td class="pointer" [routerLink]="['detail', i]">{{patientList.appointment_status}} </td>
-				<!-- <td><button [routerLink]="['update', i]" class="w3-button w3-blue">Update</button></td>
-				<td><button class="w3-button w3-red">Delete</button></td> -->
 			</tr>
 		</table>
 	</div>
 </div>
-
-<!-- Created By : Sangwin Gawande (http://sangw.in) -->
