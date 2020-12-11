@@ -44,8 +44,7 @@ class AddPatient implements IAddPatient {
                     if (updateSlots) {
                         return {
                             status: true,
-                            Msg: "appointment added Successfully",
-                            data: updateSlots
+                            Msg: "appointment added Successfully"
                         }
                     }
                 }else{
@@ -70,14 +69,12 @@ class AddPatient implements IAddPatient {
         if (resp) {
             return {
                 status: true,
-                Msg: "Appointment Created Successfully",
-                data: resp
+                Msg: "Appointment Created Successfully"
             }
         } else {
             return {
                 status: false,
-                Msg: "Appointment creation failed",
-                data: resp
+                Msg: "Appointment creation failed"
             }
         }
     }
@@ -95,8 +92,7 @@ class AddPatient implements IAddPatient {
         } else {
             return {
                 status: false,
-                Msg: "Appointment fetching failed",
-                data: resp
+                Msg: "Appointment fetching failed"
             }
         }
     }
@@ -114,8 +110,7 @@ class AddPatient implements IAddPatient {
         } else {
             return {
                 status: false,
-                Msg: "available slots fetching failed",
-                data: resp
+                Msg: "available slots fetching failed"
             }
         }
     }
@@ -132,8 +127,7 @@ class AddPatient implements IAddPatient {
         } else {
             return {
                 status: false,
-                Msg: "available slots fetching failed",
-                data: resp
+                Msg: "available slots fetching failed"
             }
         }
     }
@@ -163,14 +157,12 @@ class AddPatient implements IAddPatient {
         if (availableSlots) {
             return {
                 status: true,
-                Msg: "slots added Successfully",
-                data: availableSlots
+                Msg: "slots added Successfully"
             }
         } else {
             return {
                 status: false,
-                Msg: "slots adding failed",
-                data: availableSlots
+                Msg: "slots adding failed"
             }
         }
     }
